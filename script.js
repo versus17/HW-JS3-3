@@ -1,38 +1,13 @@
 'use strict';
 
-// window.addEventListener('click', setInterval(flashLights, 1000));
-// function redLights () {
-// 	let lightStrips = document.querySelectorAll('.light-strip');	
-// 	lightStrips.forEach ((item) => {
-// 		let lights = item.children;	
-// 		function red (i) {
-// 			if (i > 1) {					
-// 				lights[i].classList.add('red');					
-// 			}
-// 		}
-// 		for (let i = 0; i < lights.length; i++) {
-// 			setTimeout(red, 1000, i);
-			
-				
-// 			}		
-// 		}
-// 	);
-// }
-// redLights ();
+window.addEventListener('click', countDown);
 
-
-// function addRed () {
-// 	let lightStrips = document.querySelectorAll('.light-strip');
-
-// 	lightStrips.forEach((item,i) => {
-		
-// 	});
-// }
+function countDown () {
+	setTimeout(flashLights, 1000);
+}
 
 let i = 0;
-
-setTimeout(flashLights, 1000);
-
+let start;
 function flashLights () {
 	let lightStrips = document.querySelectorAll('.light-strip'),
 		lights = lightStrips[i].children;
@@ -42,11 +17,18 @@ function flashLights () {
 		if (i < lightStrips.length) {
 			setTimeout(flashLights, 1000);
 		}
+		else {
+			window.removeEventListener('click', countDown);
+			setTimeout(lightsOff, 1000);
+		}
 }
 
-
-
-
-
-
+function lightsOff () {
+	let lights = document.querySelectorAll('.light');
+	lights.forEach ((item) => {
+	item.classList.remove('red');
+	});
+	start = new Date();
+	console.log(start);
+}
 
