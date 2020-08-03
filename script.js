@@ -20,18 +20,6 @@
 // }
 // redLights ();
 
-let i = 0;
-setInterval(flashLights, 1000);
-
-function flashLights () {
-	let lightStrips = document.querySelectorAll('.light-strip'),
-		lights = lightStrips[i].children;
-		lights[2].classList.add('red');
-		lights[3].classList.add('red');
-		i++;
-}
-
-
 
 // function addRed () {
 // 	let lightStrips = document.querySelectorAll('.light-strip');
@@ -40,6 +28,23 @@ function flashLights () {
 		
 // 	});
 // }
+
+let i = 0;
+
+setTimeout(flashLights, 1000);
+
+function flashLights () {
+	let lightStrips = document.querySelectorAll('.light-strip'),
+		lights = lightStrips[i].children;
+		lights[2].classList.add('red');
+		lights[3].classList.add('red');
+		i++;
+		if (i < lightStrips.length) {
+			setTimeout(flashLights, 1000);
+		}
+}
+
+
 
 
 
