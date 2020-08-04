@@ -5,7 +5,8 @@ let timerID,
 	j = 0,
 	i = 0,
 	start,
-	time = document.querySelector('.time');
+	time = document.querySelector('.time'),
+	result;
 
 
 function countDown () {
@@ -49,11 +50,25 @@ function finish () {
 	}
 	else {
 		let finishTime = new Date();
-		time.innerHTML = ((finishTime - start) / 1000);
-	}	
+		result = (finishTime - start) / 1000;
+		time.innerHTML = result;
+		writeRecord ();		
+	}
 	start = undefined;
 }
 
 function randomTime () {
 	return Math.trunc((Math.random() * (2 - 0.2) + 0.2) * 1000) ;
+}
+
+function writeRecord () {
+	let record = document.querySelector('span');
+	if (localStorage.record == undefined) {
+		localStorage.record = result;
+		record.innerHTML = result;
+	}
+	else  if (localStorage.record > result) {
+		localStorage.record = result;
+		record.innerHTML = result;
+	}
 }
